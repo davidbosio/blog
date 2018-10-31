@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+ {% block body %}
+  <div class="blog-post">
+   <h2 class="blog-post-title">{{ titulo }}</h2>
+   <p class="blog-post-meta">{{fecha}} Por <a href="#">@{{idUsuario}}</a></p>
+
+   <p>{{ cuerpo }}</p>
+  </div>
+ {% endblock %}
