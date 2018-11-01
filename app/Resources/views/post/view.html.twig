@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
  {% block body %}
   <div class="blog-post">
-   <h2 class="blog-post-title">{{ titulo }}</h2>
-   <p class="blog-post-meta">{{fecha}} Por <a href="#">@{{idUsuario}}</a></p>
+   <h2 class="blog-post-title">{{ post.titulo }}</h2>
+   <a href="{{ path('update_post', {idPost: post.id}) }}" class="btn btn-primary">Editar</a>
+   <a  href="{{ path('delete_post', {idPost: post.id}) }}" class="btn btn-primary">Eliminar</a>
+   <hr>
+   <p class="blog-post-meta"><span class="mb-1 text-muted">{{ post.fechaDeCreacion }}</span> Por <a href="#">@{{post.author.nombre}}</a></p>
 
-   <p>{{ cuerpo }}</p>
+   <p>{{ post.cuerpo }}</p>
   </div>
  {% endblock %}

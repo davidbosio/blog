@@ -1,11 +1,10 @@
 <?php
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\form\FormBuilderInterface;
-
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -16,12 +15,12 @@ class PostType extends abstractType
         $builder
             ->add('titulo', textType::class)
             ->add('cuerpo', textareaType::class)
-            ->add('estado', textType::class)
-            ->add('idUsuario', textType::class)
-            ->add('submit', SubmitType::class, array(
-                'label' => 'Publicar',
-                'attr'  => array('class' => 'btn btn-default pull-right')
-            ));
+            ->add('estado', EntityType::Class, array(
+                'class'=> 'AppBundle:Categoria',
+                'choice_label'=>'descripcion',
+                'attr'=>array('class'=>'custom-select d-block w-100 col-md-4 mb-3' ),
+            ))
+            ->add('Publicar', SubmitType::class);
     }
 }
 

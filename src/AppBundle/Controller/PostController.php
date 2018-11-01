@@ -11,12 +11,16 @@ class PostController extends Controller
 {
 
     /**
-     * @Route("posts/list", name="list_posts")
+     * @Route("posts/list/{author}", name="list_posts")
      */
-    public function listAction()
+    public function listAction($author=null)
     {
-        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
-        dump($posts);
+        if(!is_null($author)){
+            $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findBy(array('author' => $author));
+        }else{
+            $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
+        }
+
         return $this->render('post/list.html.twig', [
             'posts' => $posts,
 
@@ -29,14 +33,8 @@ class PostController extends Controller
     public function viewAction($idPost)
     {
         $post = $this->getDoctrine()->getRepository('AppBundle:Post')->find($idPost);
-
         return $this->render('post/view.html.twig', array(
-            'titulo' => $post->gettitulo(),
-            'fecha' => $post->getFechaDeCreacion(),
-            'cuerpo' => $post->getCuerpo(),
-            'estado' => $post->getEstado(),
-            'idUsuario' => $post->getIdUsuario(),
-
+            'post' => $post,
         ));
     }
 
@@ -47,6 +45,30 @@ class PostController extends Controller
     {
 
         $post = new Post();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $form= $this->createForm(PostType::Class, $post);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $post=$form->getData();
+            $post->setAuthor($user);
+            $post->setFechaDeCreacion(date('Y-m-d'));
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
+            return $this->redirect('/posts/view/'.$post->getId());
+
+        }
+        return $this->render('post/form_create.html.twig', array('form'=>$form->createView()));
+    }
+
+    /**
+     * @Route("/posts/update/{idPost}", name="update_post")
+     */
+    public function updateAction($idPost, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('AppBundle:Post')->find($idPost);
+        /** @var $post Post */
         $form= $this->createForm(PostType::Class, $post);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -55,39 +77,21 @@ class PostController extends Controller
             $em=$this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
-          //  return $this->redirectToRoute('list_posts');
             return $this->redirect('/posts/view/'.$post->getId());
 
         }
         return $this->render('post/form_create.html.twig', array('form'=>$form->createView()));
-    }
-
-    /**
-     * @Route("/posts/update/{id}", name="update_post")
-     */
-    public function updateAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository('AppBundle:Post')->find($id);
-        /** @var $post Post */
-        $post->setTitulo('actualizado');
-        $post->setCuerpo("cuerpo");
-        $post->setFechaDeCreacion("22/10/1997");
-        $post->setEstado("borrador");
-        $post->setIdUsuario('1');
-        $em->persist($post);
-        $em->flush();
 
         return $this->redirectToRoute('list_posts');
     }
 
     /**
-     * @Route("/posts/delete/{postId}", name="delete_post")
+     * @Route("/posts/delete/{idPost}", name="delete_post")
      */
-    public function deleteAction($postId)
+    public function deleteAction($idPost)
     {
         $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository('AppBundle:Post')->find($postId);
+        $post = $em->getRepository('AppBundle:Post')->find($idPost);
         $em->remove($post);
         $em->flush();
 

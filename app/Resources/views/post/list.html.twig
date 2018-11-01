@@ -7,12 +7,12 @@
                         <div class="card-body d-flex flex-column align-items-start" id="center">
                             <strong class="d-inline-block mb-2 text-primary">{{post.estado}}</strong>
                             <h3 class="mb-0">
-                                <a class="text-dark" href="/posts/view/{{post.id}}">{{post.titulo}}</a>
+                                <a class="text-dark" href="{{ path('view_post', {idPost: post.id}) }}">{{post.titulo}}</a>
                             </h3>
                             <p class="mb-1 text-muted">{{post.fechaDeCreacion}}</p>
-                            <p class="text-muted mb-auto">{{post.idUsuario}}</p>
+                            <a href="{{ path('list_posts', {author:post.author.id}) }}" class="text-muted mb-auto">@{{post.author.nombre}}</a>
                             <p class="card-text mb-auto">{{post.cuerpo|slice(0, 300)~'...'}}</p>
-                            <a href=/posts/view/{{post.id}}">Continuar leyendo</a>
+                            <a href="{{ path('view_post', {idPost: post.id}) }}">Continuar leyendo</a>
                         </div>
                     </div>
                 </div>
