@@ -20,7 +20,7 @@ class PostType extends abstractType
                 'choice_label'=>'descripcion',
                 'attr'=>array('class'=>'custom-select d-block w-100 col-md-4 mb-3' ),
             ))
-            ->add('Publicar', SubmitType::class);
+            ->add('Enviar', SubmitType::class);
     }
 }
 

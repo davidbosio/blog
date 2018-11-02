@@ -30,7 +30,7 @@ class PostController extends Controller
     /**
      * @Route("profile/posts", name="profile_posts")
      */
-    public function perfileAction()
+    public function profileAction()
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findBy(array('author' => $user));
@@ -94,8 +94,23 @@ class PostController extends Controller
             return $this->redirect('/posts/view/'.$post->getId());
 
         }
-        return $this->render('post/form_create.html.twig', array('form'=>$form->createView()));
+        return $this->render('post/form_update.html.twig', array('form'=>$form->createView()));
 
+        return $this->redirectToRoute('list_posts');
+    }
+
+    /**
+     * @Route("/posts/toPublic/{idPost}", name="toPublic_post")
+     */
+    public function tuPublicAction($idPost)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $cat=$em->getRepository('AppBundle:Categoria')->findOneBy(array('descripcion' => 'Activo'));
+        $post = $em->getRepository('AppBundle:Post')->find($idPost);
+        /** @var $post Post */
+        $post->setEstado($cat);
+        $em->persist($post);
+        $em->flush();
         return $this->redirectToRoute('list_posts');
     }
 
