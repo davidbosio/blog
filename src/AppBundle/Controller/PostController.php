@@ -28,6 +28,20 @@ class PostController extends Controller
     }
 
     /**
+     * @Route("profile/posts", name="profile_posts")
+     */
+    public function perfileAction()
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findBy(array('author' => $user));
+
+
+        return $this->render('post/profile_posts.html.twig', [
+            'posts' => $posts,
+        ]);
+    }
+
+    /**
      * @Route("/posts/view/{idPost}", name="view_post")
      */
     public function viewAction($idPost)

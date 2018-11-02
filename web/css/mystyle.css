@@ -34,3 +34,18 @@ body {
     display: block;
     width: 600px;
 }
+
+#publicar{
+    position: absolute;
+    margin-left: 576px;
+}
+
+#eliminar{
+    position: absolute;
+    margin-left: 730px;
+}
+
+#editar{
+    position: absolute;
+    margin-left: 660px;
+}
