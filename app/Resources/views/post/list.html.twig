@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+
     {% block body %}
         <h1>Inicio</h1>
         <hr>
@@ -12,7 +13,7 @@
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                     {% if post.author.id == app.user.id %}
                                         <a href="{{ path('update_post', {idPost: post.id}) }}" class="btn btn-primary btn-sm" id="editar">Editar</a>
-                                        <a href="{{ path('delete_post', {idPost: post.id}) }}" class="btn btn-primary btn-sm" id="eliminar">Eliminar</a>
+                                        <a href="#" onclick="return controlBorrado('/posts/delete/{{ post.id }}')" class="btn btn-primary btn-sm" id="eliminar">Eliminar</a>
                                     {% endif %}
                                 {% endif %}
                                 <h3 class="mb-0">
@@ -20,7 +21,7 @@
                                 </h3>
                                 <p class="mb-1 text-muted">{{post.fechaDeCreacion}}</p>
                                 <a href="{{ path('list_posts', {author:post.author.id}) }}" class="text-muted mb-auto">@{{post.author.nombre}}</a>
-                                <p class="card-text mb-auto">{{post.cuerpo|slice(0, 300)~'...'}}</p>
+                                <p class="card-text mb-auto">{{post.cuerpo | raw}}</p>
                                 <a href="{{ path('view_post', {idPost: post.id}) }}">Continuar leyendo</a>
                             </div>
                         </div>
@@ -33,3 +34,8 @@
             Aun no se ha cargado ningun post
         {% endif %}
      {% endblock %}
+
+{% block javascripts %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{ asset('js/controlBorrado.js') }}"></script>
+{% endblock %}

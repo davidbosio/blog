@@ -2,15 +2,21 @@
  {% block body %}
   <div class="blog-post">
    <h2 class="blog-post-title">{{ post.titulo }}</h2>
+      <hr>
       {% if is_granted('IS_AUTHENTICATED_FULLY') %}
           {% if app.user.nombre == post.author.nombre %}
-              <a href="{{ path('update_post', {idPost: post.id}) }}" class="btn btn-primary">Editar</a>
-              <a  href="{{ path('delete_post', {idPost: post.id}) }}" class="btn btn-primary">Eliminar</a>
+              <a href="{{ path('update_post', {idPost: post.id}) }}" class="btn btn-primary btn-sm">Editar</a>
+              <a  href="#" onclick="return controlBorrado('/posts/delete/{{ post.id }}')" class="btn btn-primary btn-sm">Eliminar</a>
           {% endif %}
       {% endif %}
-   <hr>
+      <hr>
    <p class="blog-post-meta"><span class="mb-1 text-muted">{{ post.fechaDeCreacion }}</span> Por <a href="#">@{{post.author.nombre}}</a></p>
 
-   <p>{{ post.cuerpo }}</p>
+   <p>{{ post.cuerpo | raw }}</p>
   </div>
  {% endblock %}
+
+{% block javascripts %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{ asset('js/controlBorrado.js') }}"></script>
+{% endblock %}

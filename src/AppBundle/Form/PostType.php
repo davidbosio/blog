@@ -7,6 +7,7 @@ use Symfony\Component\form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
 class PostType extends abstractType
 {
@@ -14,7 +15,7 @@ class PostType extends abstractType
     {
         $builder
             ->add('titulo', textType::class)
-            ->add('cuerpo', textareaType::class)
+            ->add('cuerpo', CKEditorType::class)
             ->add('estado', EntityType::Class, array(
                 'class'=> 'AppBundle:Categoria',
                 'choice_label'=>'descripcion',
