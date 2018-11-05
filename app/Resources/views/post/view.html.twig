@@ -6,7 +6,7 @@
       {% if is_granted('IS_AUTHENTICATED_FULLY') %}
           {% if app.user.nombre == post.author.nombre %}
               <a href="{{ path('update_post', {idPost: post.id}) }}" class="btn btn-primary btn-sm">Editar</a>
-              <a  href="#" onclick="return controlBorrado('/posts/delete/{{ post.id }}')" class="btn btn-primary btn-sm">Eliminar</a>
+              <a href="#" onclick="return controlBorrado('/posts/delete/{{ post.id }}')" class="btn btn-primary btn-sm">Eliminar</a>
               <hr>
 
           {% endif %}
@@ -19,5 +19,5 @@
 
 {% block javascripts %}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ asset('js/controlBorrado.js') }}"></script>
+    <script src="{{ asset('js/funciones.js') }}"></script>
 {% endblock %}
