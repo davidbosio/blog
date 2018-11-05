@@ -102,7 +102,7 @@ class PostController extends Controller
     /**
      * @Route("/posts/toPublic/{idPost}", name="toPublic_post")
      */
-    public function tuPublicAction($idPost)
+    public function toPublicAction($idPost)
     {
         $em = $this->getDoctrine()->getManager();
         $cat=$em->getRepository('AppBundle:Categoria')->findOneBy(array('descripcion' => 'Activo'));

@@ -5,8 +5,7 @@ framework:
     test: ~
     session:
         storage_id: session.storage.mock_file
-    profiler:
-        collect: false
+        name: MOCKSESSION
 
 web_profiler:
     toolbar: false
@@ -14,3 +13,8 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+liip_functional_test:
+    authentication:
+        username: "david"
+        password: "david"

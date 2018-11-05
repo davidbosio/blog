@@ -2,7 +2,7 @@
 
 namespace Tests\AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class PostControllerTest extends WebTestCase
 {
@@ -15,7 +15,7 @@ class PostControllerTest extends WebTestCase
         $this->assertContains('Iniciar Sesion', $crawler->filter('h1')->text());
     }
 
-    public function testListarTittle()
+    public function testListTittle()
     {
         $client = static::createClient();
 
@@ -24,12 +24,25 @@ class PostControllerTest extends WebTestCase
         $this->assertContains('Inicio', $crawler->filter('h1')->text());
     }
 
-    public function testListarContent()
-    {
+    public function testListStatusCode(){
         $client = static::createClient();
+        $crawler = $client->request('GET', '/posts/list');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-        $crawler = $client->request('GET', 'posts/list');
-
-        $this->assertContains('Aun no se ha cargado ningun post', $crawler->filter('body')->text());
     }
+
+    public function testLogIn()
+    {
+        $client = $this->makeClient(true);
+        $crawler=$client->request('GET', '/login');
+        $form = $crawler->selectButton("_submit")->form();
+        $form['_username']='david';
+        $form['_password']='david';
+        $crawler = $client->submit($form);
+        var_dump($crawler);
+        $this->assertTrue(
+            $client->getResponse()->isRedirect('/posts/list/')
+        );
+    }
+
 }

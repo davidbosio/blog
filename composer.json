@@ -29,6 +29,7 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
+        "symfony/css-selector": "^4.1",
         "symfony/monolog-bundle": "^3.0.2",
         "symfony/orm-pack": "^1.0",
         "symfony/polyfill-apcu": "^1.0",
@@ -37,6 +38,7 @@
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
+        "liip/functional-test-bundle": "~1.9.5",
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^4.1"
     },

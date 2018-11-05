@@ -15,7 +15,7 @@
                 <ul class="navbar-nav mr-auto">
                     <a class="nav-link" href="{{ path('list_posts') }}">Inicio</a>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <a class="nav-link" href="{{ path('create_post') }}">Nuevo Post</a>
+                        <a class="nav-link" id="nuevo_post" href="{{ path('create_post') }}">Nuevo Post</a>
                         <a class="nav-link" href="{{ path('profile_posts') }}">Mi perfil</a>
                     {% endif %}
                 </ul>
