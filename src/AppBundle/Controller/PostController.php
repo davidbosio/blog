@@ -104,6 +104,8 @@ class PostController extends Controller
 
 
 
+
+
     /**
      * @Route("/posts/delete/{idPost}", name="delete_post")
      */

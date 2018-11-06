@@ -1,5 +1,4 @@
 <?php
-
 namespace AppBundle\Controller;
 
 use AppBundle\Form\PostType;
@@ -8,10 +7,10 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Post;
 use Symfony\Component\Routing\Annotation\Route;
 
-
-class UserController extends Controller
+class UsuarioController extends Controller
 {
-  /**
+
+    /**
      * @Route("profile/posts", name="profile_posts")
      */
     public function profileAction()
@@ -25,4 +24,5 @@ class UserController extends Controller
         ]);
     }
 }
+
 ?>
