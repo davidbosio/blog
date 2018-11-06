@@ -67,7 +67,7 @@ class Categoria
      *
      * @return string
      */
-    public function getDescripcion()sssssss
+    public function getDescripcion()
     {
         return $this->descripcion;
     }

@@ -46,10 +46,12 @@
         <counts>
           <entry key="css" value="7" />
           <entry key="dist" value="1" />
+          <entry key="gitignore" value="1" />
           <entry key="htaccess" value="1" />
           <entry key="ini" value="2" />
           <entry key="js" value="2" />
           <entry key="json" value="2" />
+          <entry key="master" value="1" />
           <entry key="php" value="163" />
           <entry key="twig" value="130" />
           <entry key="yml" value="53" />
@@ -62,7 +64,7 @@
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="2" />
           <entry key="PHP" value="157" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="PLAIN_TEXT" value="3" />
           <entry key="Twig" value="130" />
           <entry key="YAML" value="53" />
           <entry key="htaccess" value="1" />
@@ -76,7 +78,7 @@
           <entry key="ini" value="4" />
           <entry key="js" value="302" />
           <entry key="json" value="1" />
-          <entry key="php" value="8911" />
+          <entry key="php" value="8912" />
           <entry key="twig" value="3444" />
           <entry key="yml" value="761" />
         </counts>
@@ -87,7 +89,7 @@
           <entry key="Ini" value="4" />
           <entry key="JSON" value="1" />
           <entry key="JavaScript" value="302" />
-          <entry key="PHP" value="8806" />
+          <entry key="PHP" value="8807" />
           <entry key="PLAIN_TEXT" value="17" />
           <entry key="Twig" value="3444" />
           <entry key="YAML" value="761" />
@@ -107,7 +109,7 @@
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Categoria.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="358">
-              <caret line="69" column="43" selection-start-line="69" selection-start-column="43" selection-end-line="69" selection-end-column="43" />
+              <caret line="69" column="36" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -256,6 +258,17 @@
               <item name="first_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="first_project" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="first_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="first_project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="first_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="first_project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -309,16 +322,15 @@
       <workItem from="1541426933988" duration="6246000" />
       <workItem from="1541433307879" duration="18956000" />
       <workItem from="1541513253901" duration="3663000" />
-      <workItem from="1541517069761" duration="4240000" />
+      <workItem from="1541517069761" duration="5443000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133479000" />
+    <option name="totallyTimeSpent" value="134682000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="25" width="1871" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26356164" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -383,10 +395,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/NumeroController.php" />
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml.dist">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/.htaccess">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -660,10 +668,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Categoria.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
-          <caret line="69" column="43" selection-start-line="69" selection-start-column="43" selection-end-line="69" selection-end-column="43" />
+          <caret line="69" column="36" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
         </state>
       </provider>
     </entry>
