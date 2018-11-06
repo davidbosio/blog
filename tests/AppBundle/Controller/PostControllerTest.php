@@ -2,6 +2,7 @@
 
 namespace Tests\AppBundle\Controller;
 
+use AppBundle\Controller\PostController;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class PostControllerTest extends WebTestCase
@@ -31,18 +32,31 @@ class PostControllerTest extends WebTestCase
 
     }
 
+
+
+
+
     public function testLogIn()
     {
-        $client = $this->makeClient(true);
+        $client = static::createClient();
         $crawler=$client->request('GET', '/login');
         $form = $crawler->selectButton("_submit")->form();
         $form['_username']='david';
+        $form['_password']='aaaaa';
+        $crawler = $client->submit($form);
+        $this->assertTrue($client->getResponse()->isRedirect('http://localhost/login'));
+
+        $form['_username']='david';
         $form['_password']='david';
         $crawler = $client->submit($form);
-        var_dump($crawler);
-        $this->assertTrue(
-            $client->getResponse()->isRedirect('/posts/list/')
-        );
+        $this->assertTrue($client->getResponse()->isRedirect('http://localhost/posts/list'));
+
+
+    }
+
+    public function testCreate()
+    {
+
     }
 
 }
