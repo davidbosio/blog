@@ -1,24 +1,5 @@
 {% extends 'base.html.twig' %}
   {% block title %}Ver post de {{ post.author.nombre }}{% endblock %}
  {% block body %}
-  <div class="blog-post">
-   <h2 class="blog-post-title">{{ post.titulo }}</h2>
-      <hr>
-      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-          {% if app.user.nombre == post.author.nombre %}
-              <a href="{{ path('update_post', {idPost: post.id}) }}" class="btn btn-primary btn-sm">Editar</a>
-              <a href="#" onclick="return controlBorrado('/posts/delete/{{ post.id }}')" class="btn btn-primary btn-sm">Eliminar</a>
-              <hr>
-
-          {% endif %}
-      {% endif %}
-   <p class="blog-post-meta"><span class="mb-1 text-muted">{{ post.fechaDeCreacion }}</span> Por <a href="#">@{{post.author.nombre}}</a></p>
-
-   <p>{{ post.cuerpo | raw }}</p>
-  </div>
+     {{ app['rest']->url('http://127.0.0.1:8000/posts/list')}}
  {% endblock %}
-
-{% block javascripts %}
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ asset('js/funciones.js') }}"></script>
-{% endblock %}

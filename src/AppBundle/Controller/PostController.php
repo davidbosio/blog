@@ -7,11 +7,17 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Post;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+
+
+/**
+ * @Route("/posts")
+ */
 class PostController extends Controller
 {
 
     /**
-     * @Route("posts/list/{author}", name="list_posts")
+     * @Route("/list/{author}", name="list_posts")
      */
     public function listAction($author=null)
     {
@@ -28,7 +34,7 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/posts/view/{idPost}", name="view_post")
+     * @Route("/view/{idPost}", name="view_post")
      */
     public function viewAction($idPost)
     {
@@ -41,7 +47,7 @@ class PostController extends Controller
 
 
     /**
-     * @Route("/posts/create/", name="create_post")
+     * @Route("/create/", name="create_post")
      */
     public function createAction(Request $request)
     {
@@ -64,7 +70,7 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/posts/update/{idPost}", name="update_post")
+     * @Route("/update/{idPost}", name="update_post")
      */
     public function updateAction($idPost, Request $request)
     {
@@ -88,7 +94,7 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/posts/toPublic/{idPost}", name="toPublic_post")
+     * @Route("/toPublic/{idPost}", name="toPublic_post")
      */
     public function toPublicAction($idPost)
     {

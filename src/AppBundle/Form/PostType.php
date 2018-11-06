@@ -15,7 +15,7 @@ class PostType extends abstractType
     {
         $builder
             ->add('titulo', textType::class)
-            ->add('cuerpo', CKEditorType::class)
+            ->add('cuerpo', TextareaType::class)
             ->add('estado', EntityType::Class, array(
                 'class'=> 'AppBundle:Categoria',
                 'choice_label'=>'descripcion',
