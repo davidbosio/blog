@@ -15,12 +15,14 @@ class UsuarioController extends Controller
      */
     public function profileAction()
     {
+        $servicio = $this->get("app.postsService");
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findBy(array('author' => $user));
 
 
         return $this->render('post/profile_posts.html.twig', [
             'posts' => $posts,
+            'servicio'=>  $servicio
         ]);
     }
 }

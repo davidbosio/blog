@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Post;
 use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Service\PostService;
 
 
 
@@ -21,6 +22,7 @@ class PostController extends Controller
      */
     public function listAction($author=null)
     {
+        $servicio = $this->get("app.postsService");
         if(!is_null($author)){
             $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findBy(array('author' => $author));
         }else{
@@ -29,6 +31,7 @@ class PostController extends Controller
 
         return $this->render('post/list.html.twig', [
             'posts' => $posts,
+            'servicio'=>  $servicio
 
         ]);
     }
@@ -38,9 +41,12 @@ class PostController extends Controller
      */
     public function viewAction($idPost)
     {
+
         $post = $this->getDoctrine()->getRepository('AppBundle:Post')->find($idPost);
+        $servicio = $this->get("app.postsService");
         return $this->render('post/view.html.twig', array(
             'post' => $post,
+            'cuerpoCambiado'=>$servicio->changeBody($post->getCuerpo()),
         ));
     }
 
@@ -51,13 +57,15 @@ class PostController extends Controller
      */
     public function createAction(Request $request)
     {
-
         $post = new Post();
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $form= $this->createForm(PostType::Class, $post);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $post=$form->getData();
+            $servicio = $this->get("app.postsService");
+            $cuerpoCambiado=$servicio->changeBody($post->getCuerpo());
+            $post->setCuerpo($cuerpoCambiado);
             $post->setAuthor($user);
             $post->setFechaDeCreacion(date('Y-m-d'));
             $em=$this->getDoctrine()->getManager();
@@ -113,7 +121,7 @@ class PostController extends Controller
 
 
     /**
-     * @Route("/posts/delete/{idPost}", name="delete_post")
+     * @Route("/delete/{idPost}", name="delete_post")
      */
     public function deleteAction($idPost)
     {

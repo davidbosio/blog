@@ -19,7 +19,7 @@
                       <a class="text-dark" href="{{ path('view_post', {idPost: post.id}) }}">{{post.titulo}}</a>
                      </h3>
                      <p class="mb-1 text-muted">{{post.fechaDeCreacion}}</p>
-                     <p class="card-text mb-auto">{{ post.cuerpo | raw}}</p>
+                     <p class="card-text mb-auto">{{servicio.changebody(post.cuerpo)}}</p>
                      <a href="{{ path('view_post', {idPost: post.id}) }}">Continuar leyendo</a>
                     </div>
                    </div>
