@@ -21,12 +21,11 @@
                                 </h3>
                                 <p class="mb-1 text-muted">{{post.fechaDeCreacion}}</p>
                                 <a href="{{ path('list_posts', {author:post.author.id}) }}" class="text-muted mb-auto">@{{post.author.nombre}}</a>
-                                <p class="card-text mb-auto">{{servicio.changebody(post.cuerpo)}}</p>
+                                <p class="card-text mb-auto">{{servicios.changebody(post.cuerpo)}}</p>
                                 <a href="{{ path('view_post', {idPost: post.id}) }}">Continuar leyendo</a>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
                 {% endif %}
             {% endfor %}
@@ -36,6 +35,5 @@
      {% endblock %}
 
 {% block javascripts %}
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ asset('js/funciones.js') }}"></script>
+  <script src="{{ asset('js/funciones.js') }}"></script>
 {% endblock %}

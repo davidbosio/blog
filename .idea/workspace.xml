@@ -112,6 +112,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/PostServices.php">
@@ -123,6 +124,9 @@
         </entry>
       </file>
     </leaf>
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+>>>>>>> cf4d6ca148c6098775611fbf49eb781a3e3f415f
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -312,7 +316,11 @@
               <item name="first_project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="Form" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+>>>>>>> cf4d6ca148c6098775611fbf49eb781a3e3f415f
             </path>
             <path>
               <item name="first_project" type="b2602c69:ProjectViewProjectNode" />
@@ -386,12 +394,20 @@
       <workItem from="1541433307879" duration="18956000" />
       <workItem from="1541513253901" duration="3663000" />
       <workItem from="1541517069761" duration="19975000" />
+<<<<<<< HEAD
       <workItem from="1541599888993" duration="8211000" />
+=======
+      <workItem from="1541599888993" duration="8671000" />
+>>>>>>> cf4d6ca148c6098775611fbf49eb781a3e3f415f
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="157425000" />
+=======
+    <option name="totallyTimeSpent" value="157885000" />
+>>>>>>> cf4d6ca148c6098775611fbf49eb781a3e3f415f
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="25" width="1871" height="1055" extended-state="6" />

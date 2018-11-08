@@ -17,9 +17,9 @@ class PostType extends abstractType
             ->add('titulo', textType::class)
             ->add('cuerpo', TextareaType::class)
             ->add('estado', EntityType::Class, array(
-                'class'=> 'AppBundle:Categoria',
-                'choice_label'=>'descripcion',
-                'attr'=>array('class'=>'custom-select d-block w-100 col-md-4 mb-3' ),
+                'class' => 'AppBundle:Categoria',
+                'choice_label' => 'descripcion',
+                'attr' => array('class' => 'custom-select d-block w-100 col-md-4 mb-3' ),
             ))
             ->add('Enviar', SubmitType::class);
     }

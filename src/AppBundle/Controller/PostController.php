@@ -6,7 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Post;
 use Symfony\Component\Routing\Annotation\Route;
-use AppBundle\Service\PostService;
+use AppBundle\Event\PruebasEvent;
+
+
 
 
 
@@ -17,21 +19,22 @@ use AppBundle\Service\PostService;
 class PostController extends Controller
 {
 
+
     /**
      * @Route("/list/{author}", name="list_posts")
      */
-    public function listAction($author=null)
+    public function listAction($author = null)
     {
-        $servicio = $this->get("app.postsService");
-        if(!is_null($author)){
+        $servicios = $this->get("app.postsService");
+        if(!is_null($author)) {
             $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findBy(array('author' => $author));
-        }else{
+        } else {
             $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
         }
 
         return $this->render('post/list.html.twig', [
             'posts' => $posts,
-            'servicio'=>  $servicio
+            'servicios'=>  $servicios
 
         ]);
     }
@@ -43,14 +46,12 @@ class PostController extends Controller
     {
 
         $post = $this->getDoctrine()->getRepository('AppBundle:Post')->find($idPost);
-        $servicio = $this->get("app.postsService");
+        $servicios = $this->get("app.postsService");
         return $this->render('post/view.html.twig', array(
             'post' => $post,
-            'cuerpoCambiado'=>$servicio->changeBody($post->getCuerpo()),
+            'cuerpoCambiado'=> $servicios->changeBody($post->getCuerpo()),
         ));
     }
-
-
 
     /**
      * @Route("/create/", name="create_post")
@@ -61,10 +62,10 @@ class PostController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $form= $this->createForm(PostType::Class, $post);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if($form->isSubmitted() && $form->isValid()) {
             $post=$form->getData();
-            $servicio = $this->get("app.postsService");
-            $cuerpoCambiado=$servicio->changeBody($post->getCuerpo());
+            $servicios = $this->get('app.postsService');
+            $cuerpoCambiado = $servicios->changeBody($post->getCuerpo());
             $post->setCuerpo($cuerpoCambiado);
             $post->setAuthor($user);
             $post->setFechaDeCreacion(date('Y-m-d'));
@@ -87,8 +88,11 @@ class PostController extends Controller
         /** @var $post Post */
         $form= $this->createForm(PostType::Class, $post);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if($form->isSubmitted() && $form->isValid()) {
             $post=$form->getData();
+            $servicios = $this->get("app.postsService");
+            $cuerpoCambiado = $servicios->changeBody($post->getCuerpo());
+            $post->setCuerpo($cuerpoCambiado);
             $post->setFechaDeCreacion(date('Y-m-d'));
             $em=$this->getDoctrine()->getManager();
             $em->persist($post);
@@ -97,8 +101,6 @@ class PostController extends Controller
 
         }
         return $this->render('post/form_update.html.twig', array('form'=>$form->createView()));
-
-        return $this->redirectToRoute('list_posts');
     }
 
     /**
@@ -116,10 +118,6 @@ class PostController extends Controller
         return $this->redirectToRoute('list_posts');
     }
 
-
-
-
-
     /**
      * @Route("/delete/{idPost}", name="delete_post")
      */
@@ -129,7 +127,6 @@ class PostController extends Controller
         $post = $em->getRepository('AppBundle:Post')->find($idPost);
         $em->remove($post);
         $em->flush();
-
         return $this->redirectToRoute('list_posts');
 
     }
