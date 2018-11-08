@@ -19,7 +19,6 @@ class PostServices
         $palabrasArray=explode(" ", $plaintext);
         for($x=0; $x<count($palabrasArray); $x++){
             if($this->em->getRepository('AppBundle:Excepciones')->findOneBy(array('descripcion' => $palabrasArray[$x]))){
-           // if(in_array($palabras[$x], $excepcionArray)){
                 $palabrasArray[$x]="*****";
             }
         }

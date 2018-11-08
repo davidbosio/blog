@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Post;
 use Symfony\Component\Routing\Annotation\Route;
-use AppBundle\Event\PruebasEvent;
 
 
 
@@ -44,7 +43,6 @@ class PostController extends Controller
      */
     public function viewAction($idPost)
     {
-
         $post = $this->getDoctrine()->getRepository('AppBundle:Post')->find($idPost);
         $servicios = $this->get("app.postsService");
         return $this->render('post/view.html.twig', array(

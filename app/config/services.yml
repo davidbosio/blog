@@ -10,3 +10,8 @@ services:
     app.postsService:
         class: AppBundle\Service\PostServices
         arguments: ['@doctrine.orm.entity_manager']
+
+    app.login_listener:
+        class: AppBundle\Listener\PostListener
+        tags:
+        - { name: doctrine.event_listener, event: postPersist, connection: default }
