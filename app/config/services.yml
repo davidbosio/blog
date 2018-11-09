@@ -14,4 +14,4 @@ services:
     app.login_listener:
         class: AppBundle\Listener\PostListener
         tags:
-        - { name: doctrine.event_listener, event: postPersist, connection: default }
+        - { name: doctrine.event_listener, event: postPersist, entity_manager: Post }

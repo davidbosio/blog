@@ -14,11 +14,7 @@
          {% endif %}
          <p class="blog-post-meta"><span class="mb-1 text-muted">{{ post.fechaDeCreacion }}</span> Por <a href="#">@{{post.author.nombre}}</a></p>
 
-         <p>{{ cuerpoCambiado }}</p>
+         <p>{{ post.cuerpo }}</p>
      </div>
  {% endblock %}
 
-{% block javascripts %}
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ asset('js/funciones.js') }}"></script>
-{% endblock %}

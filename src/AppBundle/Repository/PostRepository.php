@@ -10,4 +10,21 @@ namespace AppBundle\Repository;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function  paginacionPosts($pagina=1){
+        $query = $this->createQueryBuilder('t')
+            ->setFirstResult(3*($pagina-1))
+            ->setMaxResults(3)
+            ->getQuery();
+        return $query->getResult();
+    }
+
+    public function  getNumberOfPages(){
+        $query = $this->createQueryBuilder('t')
+            ->select("count(t.id)")
+            ->where('t.estado= 3')
+            ->getQuery()
+            ->getResult()[0][1];
+
+        return ceil($query/3);
+    }
 }

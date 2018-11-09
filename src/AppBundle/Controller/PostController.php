@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 
-
 /**
  * @Route("/posts")
  */
@@ -20,20 +19,17 @@ class PostController extends Controller
 
 
     /**
-     * @Route("/list/{author}", name="list_posts")
+     * @Route("/list/{pagina}", name="list_posts")
      */
-    public function listAction($author = null)
+    public function listAction($pagina=1)
     {
-        $servicios = $this->get("app.postsService");
-        if(!is_null($author)) {
-            $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findBy(array('author' => $author));
-        } else {
-            $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
-        }
-
+        $postRepository=$this->getDoctrine()->getRepository('AppBundle:Post');
+        $posts=$postRepository->paginacionPosts($pagina);
+        $topPaginacion = $postRepository->getNumberOfPages();
         return $this->render('post/list.html.twig', [
             'posts' => $posts,
-            'servicios'=>  $servicios
+            'paginaActual'=>$pagina,
+            'topPaginacion'=>$topPaginacion,
 
         ]);
     }
@@ -44,10 +40,8 @@ class PostController extends Controller
     public function viewAction($idPost)
     {
         $post = $this->getDoctrine()->getRepository('AppBundle:Post')->find($idPost);
-        $servicios = $this->get("app.postsService");
         return $this->render('post/view.html.twig', array(
             'post' => $post,
-            'cuerpoCambiado'=> $servicios->changeBody($post->getCuerpo()),
         ));
     }
 
@@ -62,9 +56,6 @@ class PostController extends Controller
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $post=$form->getData();
-            $servicios = $this->get('app.postsService');
-            $cuerpoCambiado = $servicios->changeBody($post->getCuerpo());
-            $post->setCuerpo($cuerpoCambiado);
             $post->setAuthor($user);
             $post->setFechaDeCreacion(date('Y-m-d'));
             $em=$this->getDoctrine()->getManager();
@@ -88,10 +79,6 @@ class PostController extends Controller
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $post=$form->getData();
-            $servicios = $this->get("app.postsService");
-            $cuerpoCambiado = $servicios->changeBody($post->getCuerpo());
-            $post->setCuerpo($cuerpoCambiado);
-            $post->setFechaDeCreacion(date('Y-m-d'));
             $em=$this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();

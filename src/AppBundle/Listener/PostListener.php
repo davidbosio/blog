@@ -10,13 +10,16 @@ class PostListener
 {
     public function postPersist(LifecycleEventArgs $args)
     {
-        $post = $args->getObject();
-        $em = $args->getEntityManager();
-        $servicio= new PostServices($em);
-        $texto=$servicio->changeBody($post->getCuerpo());
-        $post->setCuerpo($texto);
-        $em->persist($post);
-        $em->flush();
+        $object = $args->getObject();
+        if(method_exists($object, 'getCuerpo')){
+            $em = $args->getEntityManager();
+            $servicio= new PostServices($em);
+            $texto=$servicio->changeBody($object->getCuerpo());
+            $object->setCuerpo($texto);
+            $em->persist($object);
+            $em->flush();
+        }
+
 
     }
 }

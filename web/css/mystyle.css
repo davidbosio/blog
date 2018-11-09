@@ -53,3 +53,8 @@ body {
 .formulario{
     width:700px;
 }
+
+#paginador{
+    position: absolute;
+    margin-left: 400px;
+}
