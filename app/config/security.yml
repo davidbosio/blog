@@ -30,6 +30,7 @@ security:
     - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
     - { path: ^/posts/update/, role: ROLE_USER}
+    - { path: ^/posts/create/, role: ROLE_USER}
     - { path: ^/posts/delete/, role: ROLE_USER}
     - { path: ^/profile/posts, role: ROLE_USER}
     - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }

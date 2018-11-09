@@ -54,9 +54,15 @@ class PostControllerTest extends WebTestCase
 
     }
 
-    public function testCreate()
+    public function testCreatePost()
     {
+        $client = $this->makeClient(true);
 
+        $crawler = $client->request('GET', '/posts/create');
+        $form=$crawler->selectButton('post[Enviar]')->form();
+        $form['post[titulo]']='asdasd';
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
 }
