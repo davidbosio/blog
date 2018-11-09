@@ -25,6 +25,10 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult()[0][1];
 
-        return ceil($query/3);
+        $int=ceil($query/3);
+        if($int==0){
+            $int=1;
+        }
+        return $int;
     }
 }
