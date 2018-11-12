@@ -24,7 +24,6 @@
         "php": ">=5.5.9",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
-        "doctrine/doctrine-fixtures-bundle": "2.4.1",
         "doctrine/orm": "^2.5",
         "egeloen/ckeditor-bundle": "^6.0",
         "friendsofsymfony/user-bundle": "~2.0",
@@ -41,6 +40,7 @@
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "2.4.0",
         "liip/functional-test-bundle": "~1.9.5",
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^4.1"

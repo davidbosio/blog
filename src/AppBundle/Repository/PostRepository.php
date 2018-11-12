@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Categoria;
+
 /**
  * PostRepository
  *
@@ -21,7 +23,7 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
     public function  getNumberOfPages(){
         $query = $this->createQueryBuilder('t')
             ->select("count(t.id)")
-            ->where('t.estado= 3')
+            ->where("t.estado=2")
             ->getQuery()
             ->getResult()[0][1];
 
