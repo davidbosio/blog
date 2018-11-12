@@ -10,7 +10,6 @@ class PostControllerTest extends WebTestCase
     public function testLoginTittle()
     {
         $client = static::createClient();
-
         $crawler = $client->request('GET', 'login');
 
         $this->assertContains('Iniciar Sesion', $crawler->filter('h1')->text());
@@ -19,7 +18,6 @@ class PostControllerTest extends WebTestCase
     public function testListTittle()
     {
         $client = static::createClient();
-
         $crawler = $client->request('GET', 'posts/list');
 
         $this->assertContains('Inicio', $crawler->filter('h1')->text());
@@ -28,12 +26,10 @@ class PostControllerTest extends WebTestCase
     public function testListStatusCode(){
         $client = static::createClient();
         $crawler = $client->request('GET', '/posts/list');
+
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
     }
-
-
-
 
 
     public function testLogIn()
@@ -44,16 +40,35 @@ class PostControllerTest extends WebTestCase
         $form['_username']='david';
         $form['_password']='aaaaa';
         $crawler = $client->submit($form);
+
         $this->assertTrue($client->getResponse()->isRedirect('http://localhost/login'));
         $form['_username']='david';
         $form['_password']='david';
         $crawler = $client->submit($form);
+
         $this->assertTrue($client->getResponse()->isRedirect('http://localhost/posts/list'));
 
 
     }
 
-   /* public function testCreatePost()
+    public function testredirectProfile()
+    {
+        $client = static::createClient();
+        $client->followRedirects();
+        $crawler=$client->request('GET', '/login');
+        $form = $crawler->selectButton("_submit")->form();
+        $form['_username']='david';
+        $form['_password']='david';
+        $crawler = $client->submit($form);
+        $link = $crawler->selectLink('Cuenta')->link();
+        $client->click($link);
+
+        $this->assertContains("Mi Perfil", $client->getResponse()->getContent());
+
+
+    }
+
+    public function testCreatePost()
     {
         $client = $this->makeClient(true);
         $client->followRedirects();
@@ -68,7 +83,7 @@ class PostControllerTest extends WebTestCase
         $formPost['post[estado]']='2';
         $crawler = $client->submit($formPost);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }*/
+    }
 
     public function testToPublic()
     {
